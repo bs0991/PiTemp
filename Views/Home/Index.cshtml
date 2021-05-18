@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    string[] TableHeaders = new string[] {"Temperature_F",
+        "Temperature_C",
+        "Humidity",
+        "LogDate"};
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="chart">
+        <iframe height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=33bd26fd-1dd7-4336-a89b-9eb6c4c25d23&autoAuth=true&ctid=6931c963-07b7-4156-ab0e-35d1f79035b8&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXVzLWVhc3QyLXJlZGlyZWN0LmFuYWx5c2lzLndpbmRvd3MubmV0LyJ9" frameborder="0" allowFullScreen="true"></iframe>    </div>
+    <div class="table">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    @{
+                        foreach (var head in TableHeaders)
+                        {
+                            <th>
+                                @head
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var Data in Model)
+                        {
+                            <tr>
+                                <td>@Data.Temperature_F</td>
+                                <td>@Data.Temperature_C</td>
+                                <td>@Data.Humidity</td>
+                                <td>@Data.LogDate</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
